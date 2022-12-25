@@ -1,3 +1,16 @@
+# Deploy and test
+
+deploy with CDK using one of the following command
+* `npx cdk deploy` deploy 
+* `npx cdk watch` watch for changes and redeploy
+
+You should find a line in the output similar to the following
+`article-tts-stack.Endpoint8024A810 = https://6tmhcsdmxf.execute-api.us-east-1.amazonaws.com/prod/`
+
+Run `npx http-server`. Open the local address and paste the url and text into the page
+You should hear the text being spoken
+
+
 # Welcome to your CDK TypeScript project
 
 This is a blank project for CDK development with TypeScript.

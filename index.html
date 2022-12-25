@@ -1,0 +1,37 @@
+<html>
+<head></head>
+<body>
+<div>
+    <p>Endpoint:</p>
+    <p>(ex. https://6tmhcsdmxf.execute-api.us-east-1.amazonaws.com/prod/)</p>
+    <input id="api-gateway"/>
+</div>
+<div>
+    <p>Text:</p>
+    <p>(ex. I am happy)</p>
+    <input id="text"/>
+</div>
+<button onclick="func()">Speak!</button>
+<script>
+    const func = () => {
+       const body = {
+         text: document.getElementById('text').value,
+         outputFormat: "mp3",
+         voice: "Joanna",
+         textType: 'text',
+         engine: 'standard'
+       };
+      fetch(document.getElementById('api-gateway').value, {
+        method: 'POST',
+        body: JSON.stringify(body)
+      })
+        .then(res => res.json())
+        .then(res => {
+          const audio = new Audio(`data:audio/mp3;base64,${res.audioContent}`);
+          audio.play();
+          console.log(res);
+        });
+    };
+</script>
+</body>
+</html>
