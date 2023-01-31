@@ -1,0 +1,28 @@
+<html>
+<head></head>
+<body>
+<input id="text"/>
+<script>
+    const func = () => {
+       const body = {
+         text: document.getElementById('text').value,
+         outputFormat: "mp3",
+         voice: "Joanna",
+         textType: 'text',
+         engine: 'standard'
+       };
+      fetch('https://r5kyk3kuh8.execute-api.us-east-1.amazonaws.com/prod/', {
+        method: 'POST',
+        body: JSON.stringify(body)
+      })
+        .then(res => res.json())
+        .then(res => {
+          const audio = new Audio(`data:audio/mp3;base64,${res.audioContent}`);
+          audio.play();
+          console.log(res);
+        });
+    };
+</script>
+<button onclick="func()">jaja</button>
+</body>
+</html>
